@@ -76,22 +76,8 @@ public class ConnectionManager : MonoBehaviour
 
     private void RegisterWebSocketEvents()
     {
-        //Load the settings file from the webserver telling us which server we should be connecting to right now
-        XmlDocument ServerSettingsDocument = new XmlDocument();
-        ServerSettingsDocument.Load("http://swaelo.com/files/ClientServerSettings.xml");
-        string UseTestServer = ServerSettingsDocument.DocumentElement.SelectSingleNode("/root/UseTestServer").InnerText;
-
-        //Load the connection settings file as a text asset, then convert it to an XML document, then read the values from it
-        TextAsset ConnectionsFile = (TextAsset)Resources.Load("ServerConnectionSettings");
-        XmlDocument ConnectionsDocument = new XmlDocument();
-        ConnectionsDocument.LoadXml(ConnectionsFile.text);
-
-        //Load the test and release server IP values from the connection settings resource file
-        string TestServerIP = ConnectionsDocument.DocumentElement.SelectSingleNode("/root/TestServerIP").InnerText;
-        string ReleaseServerIP = ConnectionsDocument.DocumentElement.SelectSingleNode("/root/ReleaseServerIP").InnerText;
-
-        //Select the IP we were set to use based on the settings file stored on the web server
-        string ServerIP = UseTestServer == "0" ? TestServerIP : ReleaseServerIP;
+       
+        string ServerIP = "ws://172.21.209.33:5500";
         Debug.Log("Connecting to '" + ServerIP + "'");
         ServerConnection = WebSocketFactory.CreateInstance(ServerIP);
 

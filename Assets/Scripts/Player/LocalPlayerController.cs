@@ -93,17 +93,22 @@ public class LocalPlayerController : MonoBehaviour
 
     public void Awake()
     {
+        if (CameraTransform==null)
+        {
+            CameraTransform = Camera.main.transform;
+        }
         CameraRotation = CameraTransform.rotation.eulerAngles.y;
         CameraPan = CameraTransform.rotation.eulerAngles.x;
         CameraZoom = Vector3.Distance(CameraTransform.position, PlayerCameraPivot.transform.position);
 
         //Assign targetting reticle sprite reference and disable it
-        TargettingReticleObject = GameObject.Find("Targetting Reticle");
-        TargettingReticleRect = TargettingReticleObject.GetComponent<RectTransform>();
-        TargettingReticleObject.SetActive(false);
+        //TargettingReticleObject = GameObject.Find("Targetting Reticle");
+        //TargettingReticleRect = TargettingReticleObject.GetComponent<RectTransform>();
+        //TargettingReticleObject.SetActive(false);
 
         //Store position for distance calculations
         PreviousPosition = transform.position;
+        StateMachine = GetComponent<StateMachine>();
     }
 
     public void Update()

@@ -13,6 +13,33 @@ public class PlayerManagementPacketSender : MonoBehaviour
     public static PlayerManagementPacketSender Instance = null;
     void Awake() { Instance = this; }
 
+    /// <summary>
+    /// Sends the updated local player characters values to the game server
+    /// </summary>
+    /// <param name="Position">Player characters new location values</param>
+    /// <param name="Movement">Player characters new movement input values</param>
+    /// <param name="Rotation">Player characters new rotation values</param>
+    public void SendLocalPlayerCharacterUpdate(Vector3 Position, Vector3 Movement, Quaternion Rotation)
+    {
+        //Log a message showing what packet is being sent out
+        Log.Out("Local Player Character Update");
+
+        ////Create a new network packet to store all the update values, first add in the packet type enumerator
+        //NetworkPacket Packet = new NetworkPacket();
+        //Packet.WriteType(ClientPacketType.PlayerCharacterUpdate);
+
+        ////Now fill in all the values that were passed into this function
+        //Packet.WriteVector3(Position);
+        //Packet.WriteVector3(Movement);
+        //Packet.WriteQuaternion(Rotation);
+
+        ////Queue the packet ready for transmission
+        //ConnectionManager.Instance.PacketQueue.QueuePacket(Packet);
+
+        SendPlayerPositionUpdate(Position);
+        SendPlayerRotationUpdate(Rotation);
+    }
+
     public void SendPlayerPositionUpdate(Vector3 Position)
     {
         NetworkPacket Packet = new NetworkPacket();

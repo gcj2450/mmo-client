@@ -8,3 +8,6 @@ Assets/Scenes/Test.unity
 Assets/Scenes/Test.unity.meta
 Assets/Resources/ServerConnectionSettings.xml
 Assets/Resources/ServerConnectionSettings.xml.meta
+/Logs
+/.vsconfig
+/UserSettings
